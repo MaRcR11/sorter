@@ -1,0 +1,49 @@
+html, body{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    background-color: white;
+}
+
+.div{
+    background-color: black;
+    height: 5px;
+    width: 5px;
+    bottom: 0;
+}
+
+#maindiv{
+    margin: 0;
+    display:flex;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    justify-content: space-around;
+    transform: rotate(180deg);
+    transform: scaleY(-1);
+    /* height: 50%; */
+}
+
+#nav{
+    height: 3em;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-family: Apercu,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    text-align: center;
+    font-weight:1;
+    font-size: 30px;
+    transition: 2s;
+}
+
+#dropdown-arrow{
+    cursor: pointer;
+    
+}
+
+
+#nav-radix-sort,#nav-heap-sort, #nav-bubble-sort, #nav-quick-sort {
+    margin-top: 50px;
+    color: white;
+    font-size: 30px;
+}
