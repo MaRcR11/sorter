@@ -6,12 +6,12 @@ Most ordinary sorting algorithms added up in [https://marcr11.github.io/sorter/]
 Not finished, still in process.
 
 - [x] Bubble Sort
-- [] Selection Sort
-- [] Insertion Sort
-- [] Merge Sort
-- [] Quicksort
-- [] Counting Sort
-- [] Radix Sort
-- [] Bucket Sort
-- [] Heap Sort
-- [] Shell Sort
+- [ ] Selection Sort
+- [ ] Insertion Sort
+- [ ] Merge Sort
+- [ ] Quicksort
+- [ ] Counting Sort
+- [ ] Radix Sort
+- [ ] Bucket Sort
+- [ ] Heap Sort
+- [ ] Shell Sort
