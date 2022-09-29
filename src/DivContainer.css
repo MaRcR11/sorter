@@ -1,0 +1,11 @@
+#maindiv{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    bottom: 0;
+    position: absolute;
+    justify-content: space-around;
+    transform: rotate(180deg);
+    transform: scaleY(-1);
+    transition: 0.5s;
+}
