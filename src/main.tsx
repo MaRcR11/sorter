@@ -10,6 +10,6 @@ import DivContainer from "./DivContainer";
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
       <NavMenu/>
-      <DivContainer/>
+      {/*<DivContainer/>*/}
   </React.StrictMode>
 )

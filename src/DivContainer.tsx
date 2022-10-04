@@ -25,10 +25,8 @@ function DivContainer() {
 
 
 
-    return tbody(
-    for (let i = 0; i < numrows; i++) {
-        ObjectRow()
-    }
+    return (
+        <div></div>
 )
 }
 
