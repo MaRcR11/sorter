@@ -4,7 +4,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import "./DivContainer.css";
+import "../styles/DivContainer.css";
+import { bubbleSort, quickSort } from "../sortingAlgs";
 
 function NavMenu() {
   const inputRef = useRef(null);
@@ -12,14 +13,27 @@ function NavMenu() {
   const speedRef = useRef(null);
   const rangeRefStart = useRef(null);
   const [randomHeights, setRandomHeights] = useState([]);
+  const [currentAlgorithm, setCurrentAlgorithm] = useState([
+    { name: "Bubble Sort", active: true },
+    { name: "Selection Sort", active: false },
+    { name: "Insertion Sort", active: false },
+    { name: "Counting Sort", active: false },
+    { name: "Quick Sort", active: false },
+    { name: "Counting Sort", active: false },
+    { name: "Radix Sort", active: false },
+    { name: "Bucket Sort", active: false },
+    { name: "Heap Sort", active: false },
+    { name: "Shell Sort", active: false },
+  ]);
 
   function randomHeight(): number {
     return Math.random() * 450;
   }
 
-  function currentAlgorithm(e: any) {
+  function currentAlgorithmUpdate(e: any) {
     // @ts-ignore
     inputRef.current.value = e.target.innerText;
+    currentAlgorithm;
   }
 
   function updateDivs(range: any) {
@@ -35,7 +49,7 @@ function NavMenu() {
     updateDivs(rangeRefStart.current.value);
   }, []);
 
-  function currentAmountofDivs(e: number) {
+  function currentAmountofDivs(e: any) {
     setRandomHeights([]);
     updateDivs(e.target.value);
 
@@ -53,9 +67,9 @@ function NavMenu() {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  var speed = 1;
+  var speed = 1000 / 60;
 
-  const sortDivs = () => {
+  const sortDivs = async () => {
     var newArr = [...randomHeights];
     for (let i = 0; i < newArr.length; i++) {
       for (let j = 0; j < newArr.length - i; j++) {
@@ -64,6 +78,7 @@ function NavMenu() {
           newArr[j] = newArr[j + 1];
           newArr[j + 1] = tmp;
           setRandomHeights(newArr);
+          await sleep(speed);
         }
       }
     }
@@ -87,31 +102,12 @@ function NavMenu() {
                 title="Choose Algorithm"
                 id="collasible-nav-dropdown"
               >
-                <div onClick={currentAlgorithm}>
-                  <NavDropdown.Item id="bubblesort">
-                    Bubble Sort
-                  </NavDropdown.Item>
-                  <NavDropdown.Item id="selectionsort">
-                    Selection Sort
-                  </NavDropdown.Item>
-                  <NavDropdown.Item id="insertionsort">
-                    {" "}
-                    Insertion Sort
-                  </NavDropdown.Item>
-                  <NavDropdown.Item id="mergesort">Merge Sort</NavDropdown.Item>
-                  <NavDropdown.Item id="quicksort">Quicksort</NavDropdown.Item>
-                  <NavDropdown.Item id="countingsort">
-                    Counting Sort
-                  </NavDropdown.Item>
-                  <NavDropdown.Item id="radixsort">
-                    {" "}
-                    Radix Sort
-                  </NavDropdown.Item>
-                  <NavDropdown.Item id="bucketsort">
-                    Bucket Sort
-                  </NavDropdown.Item>
-                  <NavDropdown.Item id="heapsort">Heap Sort</NavDropdown.Item>
-                  <NavDropdown.Item id="shellsort">Shell Sort</NavDropdown.Item>
+                <div onClick={currentAlgorithmUpdate}>
+                  {currentAlgorithm.map((sortAlg, index) => (
+                    <NavDropdown.Item key={`${index}`}>
+                      {sortAlg.name}
+                    </NavDropdown.Item>
+                  ))}
                 </div>
               </NavDropdown>
 
