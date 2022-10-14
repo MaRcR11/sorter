@@ -1,4 +1,4 @@
-import returnStates from "./components/Navmenu";
+import returnStates from "./components/App";
 
 export function bubbleSort(
   randomHeights: number[],
