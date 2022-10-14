@@ -10,10 +10,10 @@ function NavMenu() {
   const inputRef = useRef(null);
   const rangeRef = useRef(null);
   const speedRef = useRef(null);
+  const comparisonsRef = useRef(null);
   const rangeRefStart = useRef(null);
   const [animationSpeed, setAnimationSpeed] = useState(1);
-  const [iSortDiv, setISortDiv] = useState(0);
-  const [jSortDiv, setJSortDiv] = useState(0);
+  const [animRunning, setAnimRunning] = useState(false);
   const [randomHeights, setRandomHeights] = useState<number[]>([]);
   const [currentAlgorithm, setCurrentAlgorithm] = useState([
     { name: "Bubble Sort", active: true },
@@ -27,10 +27,7 @@ function NavMenu() {
     { name: "Shell Sort", active: false },
     { name: "Merge Sort", active: false },
   ]);
-
-  useEffect(() => {
-    setRandomHeights();
-  }, [iSortDiv, jSortDiv]);
+  let comps = 0;
 
   function randomHeight(): number {
     return Math.random() * 450;
@@ -52,10 +49,10 @@ function NavMenu() {
 
   function updateDivs(range: any) {
     setRandomHeights([]);
+    comparisonsRef.current.value = `Comparisons: ${comps}`;
+    comps = 0;
     for (let i = 0; i < range; i++)
       setRandomHeights((prevState) => [...prevState, randomHeight()]);
-
-    console.log(randomHeights);
   }
 
   useEffect(() => {
@@ -63,6 +60,8 @@ function NavMenu() {
   }, []);
 
   function currentAmountofDivs(e: any) {
+    setAnimRunning(false);
+
     updateDivs(e.target.value);
 
     // @ts-ignore
@@ -82,6 +81,7 @@ function NavMenu() {
   function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
   //algs...
   const insertionSort = async () => {
     let inputArr = randomHeights;
@@ -104,23 +104,29 @@ function NavMenu() {
 
       await sleep(animationSpeed);
     }
+    setAnimRunning(false);
   };
 
   const bubbleSort = async () => {
     let currentArr = randomHeights;
-
     for (let i = 0; i < currentArr.length - 1; i++) {
       for (let j = 0; j < currentArr.length - i - 1; j++) {
         if (currentArr[j] > currentArr[j + 1]) {
           let temp = currentArr[j];
           currentArr[j] = currentArr[j + 1];
           currentArr[j + 1] = temp;
+          comps++;
           setRandomHeights([...randomHeights, currentArr]);
+          comparisonsRef.current.value = `Comparisons: ${comps}`;
           await sleep(animationSpeed);
+        } else {
+          comps++;
+          comparisonsRef.current.value = `Comparisons: ${comps}`;
         }
       }
     }
-    console.log(randomHeights);
+    setAnimRunning(false);
+    console.log(comps);
   };
 
   const selectionSort = async () => {
@@ -141,15 +147,22 @@ function NavMenu() {
         inputArr[i] = inputArr[min];
         inputArr[min] = tmp;
         setRandomHeights([...randomHeights, inputArr]);
+        comps++;
+        comparisonsRef.current.value = `Comparisons: ${comps}`;
+
         await sleep(animationSpeed);
+      } else {
+        comps++;
+        comparisonsRef.current.value = `Comparisons: ${comps}`;
       }
     }
+    setAnimRunning(false);
   };
 
   const algorithms = [bubbleSort, selectionSort, insertionSort];
 
   const sortDivs = () => {
-    console.log(animationSpeed);
+    setAnimRunning(true);
     currentAlgorithm.map((e, i) => {
       if (e.active) algorithms[i]();
     });
@@ -202,6 +215,7 @@ function NavMenu() {
                 min="4"
                 max="250"
                 defaultValue="125"
+                disabled={animRunning}
               />
               <input
                 ref={rangeRef}
@@ -223,6 +237,7 @@ function NavMenu() {
                 min="1"
                 max="3"
                 defaultValue="3"
+                disabled={animRunning}
               />
               <input
                 ref={speedRef}
@@ -238,25 +253,34 @@ function NavMenu() {
                 onClick={sortDivs}
                 type="button"
                 className="btn btn-outline-primary"
+                disabled={animRunning}
               >
                 Sort!
               </button>
+              <input
+                ref={comparisonsRef}
+                defaultValue="Comparisons: 0"
+                id="currentAlgorithmForm"
+                className="form-control shadow-none bg-dark border-0 user-select-all text-primary text-center"
+                type="text"
+                placeholder=""
+                disabled
+              />
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
       <div id="maindiv">
-        {randomHeights &&
-          randomHeights.map((element, id) => (
-            <div
-              key={id}
-              style={{
-                height: `${element}px`,
-                width: `${5}px`,
-              }}
-              className="div bg-dark"
-            ></div>
-          ))}
+        {randomHeights.map((element, id) => (
+          <div
+            key={id}
+            style={{
+              height: `${element}px`,
+              width: `${5}px`,
+            }}
+            className="div bg-dark"
+          ></div>
+        ))}
       </div>
     </div>
   );
