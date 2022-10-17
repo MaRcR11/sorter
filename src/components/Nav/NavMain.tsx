@@ -23,6 +23,7 @@ interface Props {
   speedRef: React.Ref<HTMLInputElement>;
   comparisonRef: React.Ref<HTMLInputElement>;
   animRunning: boolean;
+  isSorted: boolean;
 }
 function NavMain(props: Props) {
   return (
@@ -59,6 +60,7 @@ function NavMain(props: Props) {
             <StartButton
               animRunning={props.animRunning}
               sortDivs={props.sortDivs}
+              isSorted={props.isSorted}
             />
             <AlgorithmComparisons comparisonRef={props.comparisonRef} />
           </Nav>

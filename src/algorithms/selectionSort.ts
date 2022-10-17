@@ -7,12 +7,14 @@ const selectionSort = async ({
   visualizationSpeed,
   setAnimRunning,
   comparisonsRef,
+  setIsSorted,
 }: {
   randomHeights: number[];
   setRandomHeights: React.ComponentState;
   visualizationSpeed: number;
-  setAnimRunning?: React.ComponentState;
+  setAnimRunning: React.ComponentState;
   comparisonsRef: any;
+  setIsSorted: React.ComponentState;
 }) => {
   console.log(randomHeights);
   let comps = 0;
@@ -41,6 +43,7 @@ const selectionSort = async ({
     console.log(i);
   }
   setAnimRunning(false);
+  setIsSorted(true);
 };
 
 export default selectionSort;

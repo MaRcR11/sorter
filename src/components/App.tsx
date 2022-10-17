@@ -15,6 +15,7 @@ function App() {
   const comparisonsRef = useRef<HTMLInputElement>(null);
   const rangeRefStart = useRef<HTMLInputElement>(null);
   const [visualizationSpeed, setVisualizationSpeed] = useState<number>(1);
+  const [isSorted, setIsSorted] = useState<boolean>(false);
   const [animRunning, setAnimRunning] = useState<boolean>(false);
   const [randomHeights, setRandomHeights] = useState<number[]>([]);
   const [currentAlgorithm, setCurrentAlgorithm] = useState<
@@ -68,6 +69,7 @@ function App() {
     if (rangeRef.current === null) return;
 
     setAnimRunning(false);
+    setIsSorted(false);
 
     updateDivs(e.target.value);
 
@@ -87,6 +89,7 @@ function App() {
 
   const sortDivs = async () => {
     setAnimRunning(true);
+    setIsSorted(true);
     currentAlgorithm.map(async (e, i) => {
       if (e.active) {
         await algorithms[i]({
@@ -95,6 +98,7 @@ function App() {
           visualizationSpeed,
           setAnimRunning,
           comparisonsRef,
+          setIsSorted,
         });
       }
     });
@@ -114,6 +118,7 @@ function App() {
         animRunning={animRunning}
         speedRef={speedRef}
         comparisonRef={comparisonsRef}
+        isSorted={isSorted}
       />
       <DivContainer randomHeights={randomHeights} />
     </div>
