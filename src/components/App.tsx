@@ -9,13 +9,16 @@ import randomHeight from "../helpers/randomizeArray";
 import bubbleSort from "../algorithms/bubbleSort";
 import selectionSort from "../algorithms/selectionSort";
 import insertionSort from "../algorithms/insertionSort";
+import Title from "./Nav/Title";
+import DivContainer from "./DivContainer/DivContainer";
+import NavMain from "./Nav/NavMain";
 
 function App() {
-  const inputRef = useRef(null);
-  const rangeRef = useRef(null);
-  const speedRef = useRef(null);
-  const comparisonsRef = useRef(null);
-  const rangeRefStart = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const rangeRef = useRef<HTMLInputElement>(null);
+  const speedRef = useRef<HTMLInputElement>(null);
+  const comparisonsRef = useRef<HTMLInputElement>(null);
+  const rangeRefStart = useRef<HTMLInputElement>(null);
   const [visualizationSpeed, setVisualizationSpeed] = useState(1);
   const [animRunning, setAnimRunning] = useState(false);
   const [randomHeights, setRandomHeights] = useState<number[]>([]);
@@ -70,7 +73,7 @@ function App() {
       rangeRef.current.value = `Amount of bars: ${e.target.value}`;
   }
 
-  function currentSpeed(e: any) {
+  function currentSpeed(e: React.ChangeEvent<HTMLInputElement>) {
     let speeds = [100, 10, 1];
     setVisualizationSpeed(speeds[e.target.value - 1]);
     console.log(e.target.value);
@@ -96,118 +99,20 @@ function App() {
 
   return (
     <div className="d-flex">
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg="dark"
-        variant="dark"
-        className="w-100"
-      >
-        <Container className="">
-          <Navbar.Brand href="#home">Sorter</Navbar.Brand>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <NavDropdown
-                title="Choose Algorithm"
-                id="collasible-nav-dropdown"
-              >
-                <div onClick={currentAlgorithmUpdate}>
-                  {currentAlgorithm.map((sortAlg, index) => (
-                    <NavDropdown.Item key={`${index}`}>
-                      {sortAlg.name}
-                    </NavDropdown.Item>
-                  ))}
-                </div>
-              </NavDropdown>
-
-              <input
-                ref={inputRef}
-                defaultValue="Bubble Sort"
-                id="currentAlgorithmForm"
-                className="form-control shadow-none bg-dark border-0 user-select-all text-primary text-center"
-                type="text"
-                placeholder=""
-                disabled
-              />
-              <input
-                ref={rangeRefStart}
-                onChange={currentAmountofDivs}
-                data-placement="top"
-                title="Amount of bars: 125"
-                type="range"
-                className="form-range m-lg-2"
-                id="customRange"
-                min="4"
-                max="250"
-                defaultValue="125"
-                disabled={animRunning}
-              />
-              <input
-                ref={rangeRef}
-                defaultValue="Amount of bars: 125"
-                id="currentAlgorithmForm"
-                className="form-control shadow-none bg-dark border-0 user-select-all text-primary text-center"
-                type="text"
-                placeholder=""
-                disabled
-              />
-
-              <input
-                onChange={currentSpeed}
-                data-placement="top"
-                title="Speed: 3"
-                type="range"
-                className="form-range m-lg-2"
-                id="customRange2"
-                min="1"
-                max="3"
-                defaultValue="3"
-                disabled={animRunning}
-              />
-              <input
-                ref={speedRef}
-                defaultValue="Speed: 3"
-                id="currentAlgorithmForm"
-                className="form-control shadow-none bg-dark border-0 user-select-all text-primary text-center"
-                type="text"
-                placeholder=""
-                disabled
-              />
-
-              <button
-                onClick={sortDivs}
-                type="button"
-                className="btn btn-outline-primary"
-                disabled={animRunning}
-              >
-                Sort!
-              </button>
-              <input
-                ref={comparisonsRef}
-                defaultValue="Comparisons: 0"
-                id="currentAlgorithmForm"
-                className="form-control shadow-none bg-dark border-0 user-select-all text-primary text-center"
-                type="text"
-                placeholder=""
-                disabled
-              />
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <div id="maindiv">
-        {randomHeights.map((element, id) => (
-          <div
-            key={id}
-            style={{
-              height: `${element}px`,
-              width: `${5}px`,
-            }}
-            className="div bg-dark"
-          ></div>
-        ))}
-      </div>
+      <NavMain
+        sortDivs={sortDivs}
+        currentSpeed={currentSpeed}
+        currentAlgorithmUpdate={currentAlgorithmUpdate}
+        currentAlgorithm={currentAlgorithm}
+        inputRef={inputRef}
+        currentAmountOfDivs={currentAmountofDivs}
+        rangeRef={rangeRef}
+        rangeRefStart={rangeRefStart}
+        animRunning={animRunning}
+        speedRef={speedRef}
+        comparisonRef={comparisonsRef}
+      />
+      <DivContainer randomHeights={randomHeights} />
     </div>
   );
 }
