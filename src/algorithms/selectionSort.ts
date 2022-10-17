@@ -1,4 +1,5 @@
 import sleep from "../helpers/asyncSetTimeout";
+import React from "react";
 
 const selectionSort = async ({
   randomHeights,
@@ -6,7 +7,13 @@ const selectionSort = async ({
   visualizationSpeed,
   setAnimRunning,
   comparisonsRef,
-} = {}) => {
+}: {
+  randomHeights: number[];
+  setRandomHeights: React.ComponentState;
+  visualizationSpeed: number;
+  setAnimRunning?: React.ComponentState;
+  comparisonsRef: any;
+}) => {
   console.log(randomHeights);
   let comps = 0;
   let len = randomHeights.length;

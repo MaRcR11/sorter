@@ -1,4 +1,5 @@
 import sleep from "../helpers/asyncSetTimeout";
+import React from "react";
 
 const insertionSort = async ({
   randomHeights,
@@ -6,7 +7,13 @@ const insertionSort = async ({
   visualizationSpeed,
   setAnimRunning,
   comparisonsRef,
-} = {}) => {
+}: {
+  randomHeights: number[];
+  setRandomHeights: React.ComponentState;
+  visualizationSpeed: number;
+  setAnimRunning?: React.ComponentState;
+  comparisonsRef: any;
+}) => {
   let inputArr = randomHeights;
   let comps = 0;
   let n = inputArr.length;

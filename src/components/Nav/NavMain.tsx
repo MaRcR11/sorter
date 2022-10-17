@@ -41,6 +41,7 @@ function NavMain(props: Props) {
             <AlgorithmDropDown
               currentAlgorithm={props.currentAlgorithm}
               currentAlgorithmUpdate={props.currentAlgorithmUpdate}
+              animRunning={props.animRunning}
             />
             <CurrentAlgorithm inputRef={props.inputRef} />
             <AmountOfBarsSlider

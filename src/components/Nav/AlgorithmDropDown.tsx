@@ -4,11 +4,16 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 interface Props {
   currentAlgorithmUpdate: (e: any) => void;
   currentAlgorithm: { name: string; active: boolean }[];
+  animRunning: boolean;
 }
 
 function AlgorithmDropDown(props: Props) {
   return (
-    <NavDropdown title="Choose Algorithm" id="collasible-nav-dropdown">
+    <NavDropdown
+      title="Choose Algorithm"
+      id="collasible-nav-dropdown"
+      disabled={props.animRunning}
+    >
       <div onClick={props.currentAlgorithmUpdate}>
         {props.currentAlgorithm.map((sortAlg, index) => (
           <NavDropdown.Item key={`${index}`}>{sortAlg.name}</NavDropdown.Item>

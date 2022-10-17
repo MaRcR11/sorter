@@ -1,4 +1,5 @@
 import sleep from "../helpers/asyncSetTimeout";
+import React from "react";
 
 const bubbleSort = async ({
   randomHeights,
@@ -6,7 +7,13 @@ const bubbleSort = async ({
   visualizationSpeed,
   setAnimRunning,
   comparisonsRef,
-} = {}) => {
+}: {
+  randomHeights: number[];
+  setRandomHeights: React.ComponentState;
+  visualizationSpeed: number;
+  setAnimRunning?: React.ComponentState;
+  comparisonsRef: any;
+}) => {
   let comps = 0;
   let currentArr = randomHeights;
   for (let i = 0; i < currentArr.length - 1; i++) {
