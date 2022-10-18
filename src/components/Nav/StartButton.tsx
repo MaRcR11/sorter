@@ -3,6 +3,7 @@ import React from "react";
 interface Props {
   sortDivs: () => void;
   animRunning: boolean;
+  isSorted: boolean;
 }
 
 function StartButton(props: Props) {
@@ -11,7 +12,7 @@ function StartButton(props: Props) {
       onClick={props.sortDivs}
       type="button"
       className="btn btn-outline-primary"
-      disabled={props.animRunning}
+      disabled={props.isSorted}
     >
       Sort!
     </button>
