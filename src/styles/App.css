@@ -8,4 +8,5 @@
     transform: rotate(180deg);
     transform: scaleY(-1);
     transition: 0.5s;
+    z-index: -1
 }
