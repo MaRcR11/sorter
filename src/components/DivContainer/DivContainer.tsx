@@ -6,6 +6,7 @@ interface Props {
 }
 
 function DivContainer(props: Props) {
+  console.log(document.body.clientWidth, props.randomHeights.length * 3);
   return (
     <div id="maindiv">
       {props.randomHeights.map((element, id) => (
@@ -14,11 +15,13 @@ function DivContainer(props: Props) {
           style={{
             height: `${element}px`,
             width: `${Math.floor(
-              document.body.clientWidth / (props.randomHeights.length * 3)
+              document.body.clientWidth / (props.randomHeights.length * 3) >= 1
+                ? document.body.clientWidth / (props.randomHeights.length * 3)
+                : 1
             )}px`,
           }}
           className="div bg-dark"
-        ></div>
+        />
       ))}
     </div>
   );
