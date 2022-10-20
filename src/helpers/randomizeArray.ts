@@ -1,5 +1,5 @@
 function randomHeight(): number {
-  return Math.random() * 450;
+  return (Math.random() * screen.height) / 2;
 }
 
 export default randomHeight;

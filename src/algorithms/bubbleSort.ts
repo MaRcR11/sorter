@@ -33,7 +33,7 @@ const bubbleSort = async ({
     }
   }
   setAnimRunning(false);
-  console.log(comps);
+  console.log(randomHeights);
 };
 
 export default bubbleSort;
