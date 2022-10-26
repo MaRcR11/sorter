@@ -80,7 +80,7 @@ function App() {
   function currentSpeed(e: React.ChangeEvent<HTMLInputElement>) {
     if (speedRef.current === null) return;
 
-    let speeds = [100, 10, 1];
+    let speeds = [500, 10, 1];
     setVisualizationSpeed(speeds[parseInt(e.target.value) - 1]);
     console.log(e.target.value);
 
