@@ -1,16 +1,8 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import Title from "./Title";
 import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import AlgorithmDropDown from "./AlgorithmDropDown";
-import CurrentAlgorithm from "./CurrentAlgorithm";
-import AmountOfBarsSlider from "./AmountOfBarsSlider";
-import VisualisationSpeedSlider from "./VisualisationSpeedSlider";
-import StartButton from "./StartButton";
-import AlgorithmComparisons from "./AlgorithmComparisons";
-
+import {AlgorithmComparisons, AlgorithmDropDown, CurrentAlgorithm, VisualisationSpeedSlider, AmountOfBarsSlider, Title, StartButton} from "./NavElements";
 interface Props {
   sortDivs: () => void;
   currentSpeed: (e: any) => void;

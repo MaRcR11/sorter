@@ -18,4 +18,4 @@ function AlgorithmComparisons(props: Props) {
   );
 }
 
-export default AlgorithmComparisons;
+export default AlgorithmComparisons

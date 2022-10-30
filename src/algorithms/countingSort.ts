@@ -21,4 +21,4 @@
 //
 // export default countingSort;
 
-export {};
+export default {};

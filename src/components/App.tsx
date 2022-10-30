@@ -2,11 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/App.css";
 import randomHeight from "../helpers/randomizeArray";
-import bubbleSort from "../algorithms/bubbleSort";
-import selectionSort from "../algorithms/selectionSort";
-import insertionSort from "../algorithms/insertionSort";
 import DivContainer from "./DivContainer/DivContainer";
 import NavMain from "./Nav/NavMain";
+import {bubbleSort, selectionSort, insertionSort} from "../algorithms";
 
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
