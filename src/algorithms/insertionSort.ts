@@ -25,7 +25,7 @@ const insertionSort = async ({
     while (j > -1 && current < inputArr[j]) {
       inputArr[j + 1] = inputArr[j];
       comps++;
-      setRandomHeights([...randomHeights, inputArr]);
+      setRandomHeights([...randomHeights]);
       comparisonsRef.current.value = `Comparisons: ${comps}`;
 
       await sleep(visualizationSpeed);
@@ -35,7 +35,7 @@ const insertionSort = async ({
     inputArr[j + 1] = current;
     comps++;
 
-    setRandomHeights([...randomHeights, inputArr]);
+    setRandomHeights([...randomHeights]);
     comparisonsRef.current.value = `Comparisons: ${comps}`;
   }
   setAnimRunning(false);

@@ -39,7 +39,7 @@ const selectionSort = async ({
     array[i] = array[minIndex];
     array[minIndex] = temp;
 
-    setRandomHeights([...randomHeights, array]);
+    setRandomHeights([...randomHeights]);
     console.log(i);
   }
   setAnimRunning(false);

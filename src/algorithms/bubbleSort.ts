@@ -23,7 +23,7 @@ const bubbleSort = async ({
         currentArr[j] = currentArr[j + 1];
         currentArr[j + 1] = temp;
         comps++;
-        setRandomHeights([...randomHeights, currentArr]);
+        setRandomHeights([...randomHeights]);
         comparisonsRef.current.value = `Comparisons: ${comps}`;
         await sleep(visualizationSpeed);
       } else {
