@@ -1,6 +1,6 @@
 {
-  "homepage": "http://marcr11.github.io/sorter-vite",
-  "name": "sorter-vite",
+  "homepage": "http://marcr11.github.io/sorter",
+  "name": "sorter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
